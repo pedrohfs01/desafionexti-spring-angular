@@ -10,6 +10,20 @@ import { MenuModule } from 'primeng/menu';
 import { ProdutosComponent } from './produtos/produtos.component';
 import { PedidosComponent } from './pedidos/pedidos.component';
 import { ClientesComponent } from './clientes/clientes.component';
+import { ClienteService } from './clientes/cliente.service';
+import { ProdutoService } from './produtos/produto.service';
+import { PedidoService } from './pedidos/pedido.service';
+
+import { TableModule } from 'primeng/table';
+import { ToastModule } from 'primeng/toast';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -25,9 +39,17 @@ import { ClientesComponent } from './clientes/clientes.component';
     AppRoutingModule,
     TabMenuModule,
     MenuModule,
-    HttpClientModule
+    HttpClientModule,
+    TableModule,
+    ToastModule,
+    DialogModule,
+    ButtonModule,
+    DropdownModule,
+    InputNumberModule,
+    InputTextModule,
+    ConfirmDialogModule
   ],
-  providers: [],
+  providers: [ClienteService, ProdutoService, PedidoService, MessageService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

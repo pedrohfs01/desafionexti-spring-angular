@@ -38,7 +38,6 @@ public class Pedido implements Serializable {
     @JsonIgnoreProperties(value = "pedidos", allowSetters = true)
     private Cliente cliente;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -110,7 +109,6 @@ public class Pedido implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

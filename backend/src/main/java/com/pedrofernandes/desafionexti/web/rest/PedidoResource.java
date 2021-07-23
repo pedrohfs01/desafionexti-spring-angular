@@ -27,9 +27,6 @@ public class PedidoResource {
 
     private static final String ENTITY_NAME = "pedido";
 
-    @Value("${jhipster.clientApp.name}")
-    private String applicationName;
-
     private final PedidoService pedidoService;
 
     public PedidoResource(PedidoService pedidoService) {

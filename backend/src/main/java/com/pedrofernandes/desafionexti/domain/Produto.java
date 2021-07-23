@@ -37,7 +37,6 @@ public class Produto implements Serializable {
     @JsonIgnore
     private Set<Pedido> pedidos = new HashSet<>();
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
     }
@@ -122,7 +121,6 @@ public class Produto implements Serializable {
     public void setPedidos(Set<Pedido> pedidos) {
         this.pedidos = pedidos;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {

@@ -35,3 +35,8 @@ eu utilizei o Intelijj. E rodar o "DesafionextiApplication"
 No frontend abrir no terminal e utilizar o comando "npm install" e após isso "ng serve".
 
 Qualquer dúvida, email: pedexg@gmail.com.
+
+
+![Captura de tela de 2021-07-26 10-23-48](https://user-images.githubusercontent.com/48767712/126997786-8711559b-2807-4ac1-b134-dee8b737e911.png)
+![Captura de tela de 2021-07-26 10-23-54](https://user-images.githubusercontent.com/48767712/126997799-8ebcf3f8-e584-4ca3-bd28-1007e04a70b6.png)
+![Captura de tela de 2021-07-26 10-23-59](https://user-images.githubusercontent.com/48767712/126997805-13001636-1db9-4162-a64c-32b33b7f184b.png)

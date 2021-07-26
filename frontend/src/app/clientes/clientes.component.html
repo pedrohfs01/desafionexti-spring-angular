@@ -19,7 +19,6 @@
         <td>{{cliente.cpf}}</td>
         <td>{{cliente.dtNasc | date : "dd/MM/yyyy"}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary p-mr-2" (click)="abrirDialog(3, cliente)"></button>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="abrirDialog(2, cliente)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarCliente(cliente)"></button>
       </td>

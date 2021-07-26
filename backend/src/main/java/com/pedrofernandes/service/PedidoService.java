@@ -38,7 +38,6 @@ public class PedidoService {
     public PedidoDTO save(PedidoDTO pedidoDTO) {
         log.debug("Request to save Pedido : {}", pedidoDTO);
         Pedido pedido = this.toEntity(pedidoDTO);
-        pedido.setDataCompra(LocalDate.now());
         pedido = pedidoRepository.save(pedido);
         return this.toDto(pedido);
     }

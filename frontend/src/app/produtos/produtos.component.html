@@ -21,7 +21,6 @@
         <td>{{produto.preco | currency: "BRL"}}</td>
         <td>{{produto.quantidade}}</td>
         <td>
-          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary p-mr-2" (click)="abrirDialog(3, produto)"></button>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="abrirDialog(2, produto)"></button>
           <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarProduto(produto)"></button>
       </td>

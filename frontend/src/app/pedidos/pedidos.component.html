@@ -21,7 +21,7 @@
         <td>{{pedido?.totalCompra | currency: "BRL"}}</td>
         <td>{{pedido?.dataCompra | date: "dd/MM/y"}}</td>
         <td>
-          <div *ngFor="let produto of pedido.produtos">{{produto.nome}}, </div>
+          <div *ngFor="let produto of pedido.produtos">{{pedido.produtos.indexOf(produto)+1}}. {{produto.nome}}</div>
         </td>
         <td>
           <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"

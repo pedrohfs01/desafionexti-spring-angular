@@ -1,6 +1,68 @@
 <p-toast></p-toast>
 
-<button pButton pRipple label="Novo" icon="pi pi-plus" style="margin-left: 15px; margin-top: 15px;" class="p-button-success p-mr-2"></button>
-<p-table >
+<p-card>
+  <button pButton pRipple label="Novo" (click)="abrirDialog(1)" icon="pi pi-plus"
+    style="margin-left: 15px; margin-top: 15px;" class="p-button-success p-mr-2 p-mb-6"></button>
+  <p-table #dt [rowHover]="true" [lazy]="true" [paginator]="true" [rows]="20" styleClass="p-datatable-striped " [value]="clientes" [(selection)]="clienteSelecionado">
+    <ng-template pTemplate="header">
+      <tr>
+        <td>ID: </td>
+        <td>Nome: </td>
+        <td>CPF: </td>
+        <td>Data Nascimento: </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-cliente>
+      <tr>
+        <td>{{cliente.id}}</td>
+        <td>{{cliente.nome}}</td>
+        <td>{{cliente.cpf}}</td>
+        <td>{{cliente.dtNasc | date : "dd/MM/yyyy"}}</td>
+        <td>
+          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary p-mr-2" (click)="abrirDialog(3, cliente)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="abrirDialog(2, cliente)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarCliente(cliente)"></button>
+      </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
 
-</p-table>
+
+<p-dialog [modal]="true" [closable]="false" #dialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+  [style]="{width: '25vw'}" [visible]="mostrarDialogCliente" [header]="this.getHeader()"
+  [contentStyle]="{'height': ['windowHeightDialog']}">
+  <form #registrarForm="ngForm" name="registrarForm">
+    <div class="p-formgrid p-grid p-d-inline-flex">
+      <p-card>
+        <div class="p-col-4 p-mr-2 p-mb-2">
+          <label *ngIf="!isNew">Nome</label>
+          <input [disabled]="isView" name="nome" id="float-input" [(ngModel)]="cliente.nome" type="text"
+            placeholder="Nome" pInputText>
+        </div>
+
+        <div class="p-col-4 p-mr-2 p-mb-2">
+          <label *ngIf="!isNew">CPF</label>
+          <p-inputMask [disabled]="isView" placeholder="CPF" name="cpf" [(ngModel)]="cliente.cpf" mask="999.999.999-99">
+          </p-inputMask>
+        </div>
+
+        <div class="p-col-12 p-mr-2 p-mb-2">
+          <label *ngIf="!isNew">Data Nascimento</label>
+          <p-inputMask [disabled]="isView" placeholder="Data Nascimento" name="dtNasc" mask="99/99/9999"
+            [(ngModel)]="cliente.dtNasc"></p-inputMask>
+        </div>
+
+        <div class="p-col-12 p-mr-2 p-mb-2">
+          <button *ngIf="!isView" pButton pRipple type="button" label="Salvar" (click)="save()"
+            class="p-button-success p-mr-4"></button>
+          <button pButton pRipple type="button" label="Fechar" (click)="fecharDialog()"
+            class="p-button-secondary p-mr-4"></button>
+        </div>
+      </p-card>
+    </div>
+  </form>
+</p-dialog>
+
+
+<p-confirmDialog [acceptLabel]="'Sim'" [rejectLabel]="'Não'" [style]="{width: '450px'}"></p-confirmDialog>

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,12 +20,20 @@ import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from "primeng/inputmask";
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { FormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from "primeng/card"
 
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt);
 
 @NgModule({
   declarations: [
@@ -36,8 +45,13 @@ import { MessageService } from 'primeng/api';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    CalendarModule,
     AppRoutingModule,
     TabMenuModule,
+    CardModule,
+    FormsModule,
+    InputMaskModule,
     MenuModule,
     HttpClientModule,
     TableModule,
@@ -47,9 +61,9 @@ import { MessageService } from 'primeng/api';
     DropdownModule,
     InputNumberModule,
     InputTextModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
   ],
-  providers: [ClienteService, ProdutoService, PedidoService, MessageService, ConfirmationService],
+  providers: [ClienteService, ProdutoService, PedidoService, MessageService, ConfirmationService, { provide: LOCALE_ID, useValue: "pt-BR"}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

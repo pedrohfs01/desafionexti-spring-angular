@@ -1,1 +1,64 @@
-<p>pedidos works!</p>
+<p-toast></p-toast>
+
+<p-card>
+  <button pButton pRipple label="Novo" (click)="abrirDialog(1)" icon="pi pi-plus"
+    style="margin-left: 15px; margin-top: 15px;" class="p-button-success p-mr-2 p-mb-6"></button>
+  <p-table #dt [rowHover]="true" [lazy]="true" [paginator]="true" [rows]="20" styleClass="p-datatable-striped " [value]="pedidos">
+    <ng-template pTemplate="header">
+      <tr>
+        <td>ID: </td>
+        <td>Cliente: </td>
+        <td>Total Compra: </td>
+        <td>Data Compra: </td>
+        <td>Produtos: </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-pedido>
+      <tr>
+        <td>{{pedido.id}}</td>
+        <td>{{pedido.cliente.nome}}</td>
+        <td>{{pedido.totalCompra | currency: "BRL"}}</td>
+        <td>{{pedido.dataCompra | date: "dd/MM/y"}}</td>
+        <td><div *ngFor="let produto of pedido.produtos">{{produto.nome}}, </div></td>
+        <td>
+          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-secondary p-mr-2" (click)="abrirDialog(3, pedido)"></button>
+          <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="abrirDialog(2, pedido)"></button>
+          <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deletarPedido(pedido)"></button>
+      </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>
+
+
+<p-dialog [modal]="true" [closable]="false" #dialog [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+  [style]="{width: '25vw'}" [visible]="mostrarDialogPedido" [header]="this.getHeader()"
+  [contentStyle]="{'height': ['windowHeightDialog']}">
+  <form #registrarForm="ngForm" name="registrarForm">
+    <div class="p-formgrid p-grid p-d-inline-flex">
+      <p-card>
+        <div class="p-col-4 p-mr-2 p-mb-2">
+          <label *ngIf="!isNew">Cliente</label>
+          <input [disabled]="isView" name="nome" id="float-input" [(ngModel)]="pedido.cliente" type="text"
+            placeholder="Nome" pInputText>
+        </div>
+
+        <div class="p-col-4 p-mr-2 p-mb-2">
+          <label *ngIf="!isNew">Produtos</label>
+          <input [disabled]="isView" name="descricao" id="float-input" [(ngModel)]="pedido.produtos" type="text"
+            placeholder="Descrição" pInputText>
+        </div>
+
+        <div class="p-col-12 p-mr-2 p-mb-2">
+          <button *ngIf="!isView" pButton pRipple type="button" label="Salvar" (click)="save()"
+            class="p-button-success p-mr-4"></button>
+          <button pButton pRipple type="button" label="Fechar" (click)="fecharDialog()"
+            class="p-button-secondary p-mr-4"></button>
+        </div>
+      </p-card>
+    </div>
+  </form>
+</p-dialog>
+
+
+<p-confirmDialog [acceptLabel]="'Sim'" [rejectLabel]="'Não'" [style]="{width: '450px'}"></p-confirmDialog>

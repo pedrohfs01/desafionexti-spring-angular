@@ -14,7 +14,6 @@ export class ProdutosComponent implements OnInit {
   produtos: Produto[] = [];
 
   isEdit: boolean = false;
-  isView: boolean = false;
   isNew: boolean = false;
 
   produto: Produto = new Produto();
@@ -41,7 +40,6 @@ export class ProdutosComponent implements OnInit {
     this.produto = new Produto();
     this.isEdit = false;
     this.isNew = false;
-    this.isView = false;
     this.recarregarDatatable();
   }
 
@@ -58,10 +56,6 @@ export class ProdutosComponent implements OnInit {
     if (numero === 2) {
       this.isEdit = true;
       this.produto = new Produto(produto.id, produto.nome, produto.descricao, produto.preco, produto.quantidade);
-    }
-    if (numero === 3) {
-      this.isView = true;
-      this.produto = new Produto(produto.id, produto.nome, produto.descricao,produto.preco, produto.quantidade);
     }
 
     this.mostrarDialogProduto = true;

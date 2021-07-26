@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 /**
@@ -37,6 +38,7 @@ public class PedidoService {
     public PedidoDTO save(PedidoDTO pedidoDTO) {
         log.debug("Request to save Pedido : {}", pedidoDTO);
         Pedido pedido = this.toEntity(pedidoDTO);
+        pedido.setDataCompra(LocalDate.now());
         pedido = pedidoRepository.save(pedido);
         return this.toDto(pedido);
     }

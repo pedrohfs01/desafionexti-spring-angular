@@ -37,24 +37,24 @@
       <p-card>
         <div class="p-col-4 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Nome</label>
-          <input [disabled]="isView" name="nome" id="float-input" [(ngModel)]="cliente.nome" type="text"
+          <input name="nome" id="float-input" [(ngModel)]="cliente.nome" type="text"
             placeholder="Nome" pInputText>
         </div>
 
         <div class="p-col-4 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">CPF</label>
-          <p-inputMask [disabled]="isView" placeholder="CPF" name="cpf" [(ngModel)]="cliente.cpf" mask="999.999.999-99">
+          <p-inputMask placeholder="CPF" name="cpf" [(ngModel)]="cliente.cpf" mask="999.999.999-99">
           </p-inputMask>
         </div>
 
         <div class="p-col-12 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Data Nascimento</label>
-          <p-inputMask [disabled]="isView" placeholder="Data Nascimento" name="dtNasc" mask="99/99/9999"
+          <p-inputMask placeholder="Data Nascimento" name="dtNasc" mask="99/99/9999"
             [(ngModel)]="cliente.dtNasc"></p-inputMask>
         </div>
 
         <div class="p-col-12 p-mr-2 p-mb-2">
-          <button *ngIf="!isView" pButton pRipple type="button" label="Salvar" (click)="save()"
+          <button pButton pRipple type="button" label="Salvar" (click)="save()"
             class="p-button-success p-mr-4"></button>
           <button pButton pRipple type="button" label="Fechar" (click)="fecharDialog()"
             class="p-button-secondary p-mr-4"></button>

@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
+import { Cliente } from '../clientes/cliente.model';
+import { ClienteService } from '../clientes/cliente.service';
+import { Produto } from '../produtos/produto.model';
+import { ProdutoService } from '../produtos/produto.service';
 import { Pedido } from './pedido.model';
 import { PedidoService } from './pedido.service';
 
@@ -11,10 +15,12 @@ import { PedidoService } from './pedido.service';
 })
 export class PedidosComponent implements OnInit {
 
+  produtos: Produto[] = [];
+  clientes: Cliente[] = [];
+
   pedidos: Pedido[] = [];
 
   isEdit: boolean = false;
-  isView: boolean = false;
   isNew: boolean = false;
 
   pedido: Pedido = new Pedido();
@@ -25,11 +31,15 @@ export class PedidosComponent implements OnInit {
   dt: Table;
 
   constructor(private pedidoService: PedidoService,
+    private clienteService: ClienteService,
+    private produtoService: ProdutoService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.recarregarDatatable();
+    this.carregarClientes();
+    this.carregarProdutos();
   }
 
   getHeader() {
@@ -41,26 +51,24 @@ export class PedidosComponent implements OnInit {
     this.pedido = new Pedido();
     this.isEdit = false;
     this.isNew = false;
-    this.isView = false;
     this.recarregarDatatable();
   }
 
   recarregarDatatable(){
     this.pedidoService.getAll().subscribe(response => {
       this.pedidos = response;
+      console.log(response);
+
     })
   }
 
   abrirDialog(numero: number, pedido?: Pedido) {
     if (numero === 1) {
       this.isNew = true;
+      this.pedido.produtos = [];
     }
     if (numero === 2) {
       this.isEdit = true;
-      this.pedido = new Pedido(pedido.id, pedido.cliente, pedido.totalCompra, pedido.dataCompra, pedido.produtos);
-    }
-    if (numero === 3) {
-      this.isView = true;
       this.pedido = new Pedido(pedido.id, pedido.cliente, pedido.totalCompra, pedido.dataCompra, pedido.produtos);
     }
 
@@ -68,6 +76,7 @@ export class PedidosComponent implements OnInit {
   }
 
   save() {
+    console.log(this.pedido);
     if (this.verificarCamposObrigatorios()) {
       if (this.isNew) {
         this.pedidoService.create(this.pedido).subscribe(response => {
@@ -87,11 +96,7 @@ export class PedidosComponent implements OnInit {
   verificarCamposObrigatorios() {
     if (this.pedido.cliente === null || this.pedido.cliente === undefined || !this.pedido.cliente) {
       return false;
-    } if (this.pedido.totalCompra === null || this.pedido.totalCompra === undefined || !this.pedido.totalCompra) {
-      return false;
-    }if (this.pedido.dataCompra === null || this.pedido.dataCompra === undefined || !this.pedido.dataCompra) {
-      return false;
-    }if (this.pedido.produtos === null || this.pedido.produtos === undefined || !this.pedido.produtos) {
+    }if (this.pedido.produtos === null || this.pedido.produtos === undefined || !this.pedido.produtos || this.pedido.produtos.length === 0) {
       return false;
     }
     return true;
@@ -115,4 +120,24 @@ export class PedidosComponent implements OnInit {
     })
   }
 
+  carregarProdutos(){
+    this.produtoService.getAll().subscribe(response =>{
+      this.produtos = response;
+    })
+  }
+
+  carregarClientes(){
+    this.clienteService.getAll().subscribe(response =>{
+      this.clientes = response;
+    })
+  }
+
+  somarProduto(){
+    let somaTotal = 0;
+    this.pedido.produtos.forEach(produto =>{
+      somaTotal += produto.preco;
+    })
+
+    this.pedido.totalCompra = somaTotal;
+  }
 }

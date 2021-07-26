@@ -1,5 +1,8 @@
 package com.pedrofernandes.service.dto;
 
+import com.pedrofernandes.domain.Cliente;
+import com.pedrofernandes.domain.Produto;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -16,9 +19,9 @@ public class PedidoDTO implements Serializable {
 
     private LocalDate dataCompra;
 
-    private Set<ProdutoDTO> produtos = new HashSet<>();
+    private Set<Produto> produtos = new HashSet<>();
 
-    private Long clienteId;
+    private Cliente cliente;
     
     public Long getId() {
         return id;
@@ -44,20 +47,20 @@ public class PedidoDTO implements Serializable {
         this.dataCompra = dataCompra;
     }
 
-    public Set<ProdutoDTO> getProdutos() {
+    public Set<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Set<ProdutoDTO> produtos) {
+    public void setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -85,7 +88,7 @@ public class PedidoDTO implements Serializable {
             ", totalCompra=" + getTotalCompra() +
             ", dataCompra='" + getDataCompra() + "'" +
             ", produtos='" + getProdutos() + "'" +
-            ", clienteId=" + getClienteId() +
+            ", clienteId=" + getCliente().getId() +
             "}";
     }
 }

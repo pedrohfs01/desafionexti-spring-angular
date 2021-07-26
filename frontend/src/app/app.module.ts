@@ -25,6 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { PickListModule } from 'primeng/picklist';
 import { MessageService } from 'primeng/api';
 import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
@@ -62,8 +63,9 @@ registerLocaleData(localePt);
     InputNumberModule,
     InputTextModule,
     ConfirmDialogModule,
+    PickListModule,
   ],
-  providers: [ClienteService, ProdutoService, PedidoService, MessageService, ConfirmationService, { provide: LOCALE_ID, useValue: "pt-BR"}],
+  providers: [ClienteService, ProdutoService, PedidoService, MessageService, ConfirmationService, { provide: LOCALE_ID, useValue: "pt-BR" }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

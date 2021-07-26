@@ -16,7 +16,6 @@ export class ClientesComponent implements OnInit {
   clientes: Cliente[] = [];
 
   isEdit: boolean = false;
-  isView: boolean = false;
   isNew: boolean = false;
 
   cliente: Cliente = new Cliente();
@@ -45,7 +44,6 @@ export class ClientesComponent implements OnInit {
     this.cliente = new Cliente();
     this.isEdit = false;
     this.isNew = false;
-    this.isView = false;
     this.recarregarDatatable();
   }
 
@@ -66,11 +64,6 @@ export class ClientesComponent implements OnInit {
     }
     if (numero === 2) {
       this.isEdit = true;
-      this.cliente = new Cliente(cliente.id, cliente.nome, cliente.cpf, cliente.dtNasc);
-      this.cliente.dtNasc = cliente.dtNasc.toLocaleDateString();
-    }
-    if (numero === 3) {
-      this.isView = true;
       this.cliente = new Cliente(cliente.id, cliente.nome, cliente.cpf, cliente.dtNasc);
       this.cliente.dtNasc = cliente.dtNasc.toLocaleDateString();
     }

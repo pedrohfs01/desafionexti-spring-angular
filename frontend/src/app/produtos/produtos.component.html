@@ -39,28 +39,28 @@
       <p-card>
         <div class="p-col-4 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Nome</label>
-          <input [disabled]="isView" name="nome" id="float-input" [(ngModel)]="produto.nome" type="text"
+          <input name="nome" id="float-input" [(ngModel)]="produto.nome" type="text"
             placeholder="Nome" pInputText>
         </div>
 
         <div class="p-col-4 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Descrição</label>
-          <input [disabled]="isView" name="descricao" id="float-input" [(ngModel)]="produto.descricao" type="text"
+          <input name="descricao" id="float-input" [(ngModel)]="produto.descricao" type="text"
             placeholder="Descrição" pInputText>
         </div>
 
         <div class="p-col-12 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Preço</label>
-          <p-inputNumber [disabled]="isView" placeholder="Preço" name="preco" [(ngModel)]="produto.preco" mode="currency" currency="BRL" locale="pt-BR" [minFractionDigits]="2"></p-inputNumber>
+          <p-inputNumber placeholder="Preço" name="preco" [(ngModel)]="produto.preco" mode="currency" currency="BRL" locale="pt-BR" [minFractionDigits]="2"></p-inputNumber>
         </div>
 
         <div class="p-col-12 p-mr-2 p-mb-2">
           <label *ngIf="!isNew">Quantidade</label>
-          <p-inputNumber [disabled]="isView" placeholder="Quantidade" name="quantidade" [(ngModel)]="produto.quantidade"></p-inputNumber>
+          <p-inputNumber placeholder="Quantidade" name="quantidade" [(ngModel)]="produto.quantidade"></p-inputNumber>
         </div>
 
         <div class="p-col-12 p-mr-2 p-mb-2">
-          <button *ngIf="!isView" pButton pRipple type="button" label="Salvar" (click)="save()"
+          <button pButton pRipple type="button" label="Salvar" (click)="save()"
             class="p-button-success p-mr-4"></button>
           <button pButton pRipple type="button" label="Fechar" (click)="fecharDialog()"
             class="p-button-secondary p-mr-4"></button>

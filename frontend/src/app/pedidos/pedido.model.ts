@@ -3,9 +3,9 @@ import { Produto } from "../produtos/produto.model";
 
 export class Pedido{
   id?: number;
-  cliente: Cliente;
-  totalCompra: number;
-  dataCompra: Date;
+  cliente?: Cliente;
+  totalCompra?: number;
+  dataCompra?: Date;
   produtos?: Produto[] = [];
 
   constructor(id?: number, cliente?: Cliente, totalCompra?: number, dataCompra?: Date, produtos?: Produto[]){

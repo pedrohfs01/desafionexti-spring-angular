@@ -1,7 +1,3 @@
-# desafionexti-spring-angular
-Desafio para a empresa NexTI
-
-
 Construi os módulos separadamente, utilizei:
 
 Front-end.
